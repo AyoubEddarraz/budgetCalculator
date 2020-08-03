@@ -1,0 +1,10 @@
+<form #addItemForm="ngForm" (ngSubmit)="saveItem(addItemForm)">
+    <div class="form-group text-center">
+        <input type="number" [(ngModel)]="newItem.amount" class="form-control" placeholder="Amount" required name="amount" ngModel #amount="ngModel">
+        <input type="text" [(ngModel)]="newItem.desc" class="form-control my-2" placeholder="Description" required name="desc" ngModel #desc="ngModel">
+    </div>
+</form>
+<div style="text-align: center;">
+    <button class="btn btn-info mx-2" [disabled]="addItemForm.invalid" [hidden]="activeButtonUpdate" (click)="saveItem(addItemForm)">Save</button>
+    <button class="btn btn-danger mx-2" [hidden]="!activeButtonUpdate" (click)="updateFun()">Update</button>
+</div>

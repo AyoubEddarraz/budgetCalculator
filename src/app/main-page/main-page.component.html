@@ -1,0 +1,59 @@
+<!-- Title de page -->
+<h1 class="py-3 text-center m-0">Budget Calculator</h1>
+
+<!-- L'affichage de total Sold -->
+
+<div class="totalSold text-center">
+    <h2><span [ngStyle]="{ 'color' : activeColor ? '#0be881' : '#f53b57'}">{{ budget }}</span> MAD</h2>
+</div>
+
+<!-- Form Add new Item -->
+
+<div class="container mt-3 p-4 shadow-lg">
+    <app-add-item [activeUpdate]="activeButtonUpdate" [newItemForUpdate]="newItem" (update)="update($event)"></app-add-item>
+</div>
+
+<!-- Shwo the list of income and expenses -->
+
+<!-- Clear All In localStorage -->
+
+<div class="container text-center my-5">
+    <button class="btn btn-danger" (click)="activemodal()">Clear All</button>
+</div>
+
+<!-- Modal Confirme Delete -->
+<div class="modalClearAll" id="modal">
+    <div class="confirme">
+        <p>NB : the all information is deleted</p>
+        <button class="btn btn-danger" (click)="clearAll()">Confirme</button>
+        <button class="btn btn-warning ml-2" (click)="Consel()">Consel</button>
+    </div>
+</div>
+
+
+<div class="container py-5">
+    <div class="row">
+        <!-- income -->
+        <div class="incomeList col-md-6 col-sm-12">
+            <h2 style="color: #0be881;">Income</h2>
+            <div class="itemList itemIncomeList">
+                <div class="itemfree itemfreeIncome d-flex-center" *ngFor="let item of incomeArray" (click)="updateIncome(item)">
+                    <span class="iconeremove" (click)="removeItemfromIncome(item)">x</span>
+                    <span class="desc">{{ item.desc }}</span>
+                    <span class="amount">{{ item.amount }}</span>
+                </div>
+            </div>
+        </div>
+        <!-- Expenses -->
+        <div class="expensesList col-md-6 col-sm-12">
+            <h2 style="color: #f53b57;">Expenses</h2>
+            <div class="itemList itemExpensesList">
+                <div class="itemfree itemfreeExpenses d-flex-center mb-3" *ngFor="let item of expensesArray" (click)="updateIncome(item)">
+                    <span class="iconeremove" (click)="removeItemfromExpenses(item)">x</span>
+                    <span class="desc">{{ item.desc }}</span>
+                    <span class="amount">{{ item.amount }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
